@@ -73,6 +73,15 @@ def get_comments(youtube, video_id, channel_id):
     part="snippet",
     videoId=video_id,
     channelId=channel_id,
+    
+    
+    # ONLY FILTER COMMENTS THAT ARE HELD FOR REVIEW
+    # THOSE COMMENTS ONLY HAVE ONE TOP LEVEL COMMENT
+    moderationStatus="heldForReview",
+    
+    
+    
+    
     textFormat="plainText"
   ).execute()
 
@@ -112,7 +121,7 @@ def insert_comment(youtube, channel_id, video_id, text):
 def update_comment(youtube, comment):
   comment["snippet"]["topLevelComment"]["snippet"]["textOriginal"] = 'updated'
   update_result = youtube.commentThreads().update(
-    part="snippet",
+    part="snippet",    
     body=comment
   ).execute()
 
@@ -146,12 +155,16 @@ if __name__ == "__main__":
   try:
     # All the available methods are used in sequence just for the sake of an example.
     # Insert channel comment by omitting videoId
-    insert_comment(youtube, args.channelid, None, args.text)
+    # REMOVED AS IT IS NOT RELEVANT TO THE ERRRO REPORT. insert_comment(youtube, args.channelid, None, args.text)
     # Insert video comment
-    insert_comment(youtube, args.channelid, args.videoid, args.text)
+    # REMOVED AS IT IS NOT RELEVANT TO THE ERRRO REPORT. insert_comment(youtube, args.channelid, args.videoid, args.text)
     video_comments = get_comments(youtube, args.videoid, None)
     if video_comments:
       update_comment(youtube, video_comments[0])
+    
+    # STOPPING HERE, AS THE CODE BELOW IS NOT RELEVANT TO THE ERROR REPORT
+    exit()
+    
     channel_comments = get_comments(youtube, None, args.channelid)
     if channel_comments:
       update_comment(youtube, channel_comments[0])
