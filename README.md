@@ -11,7 +11,10 @@ Name of API affected: CommentThreads: update
 Issue summary:
 CommentThreads: update 
 When calling this api to update the topLevelComment returned by CommentThreads.list, I got a 400 error.
-I was using this API in an internal tool to allow me respond to comments. I was working fine for the last months... and in the last days (~2016-11-07) with no changes on any code on my side, the API started to return a 400 error. I have all my internal comment systems halted right now as I could not figure out how to fix this. Every thing I tried and tested brings me to the 400 error and the message below.
+I was using this API in an internal tool to allow me respond to comments. 
+It was working fine for the last months... and in the last days (~2016-11-07) with no changes on any code on my side, the API started to return a 400 error. 
+I have all my internal comment systems halted right now as I could not figure out how to fix this. 
+Every thing I tried and tested brings me to the 400 error and the message below.
 
 "While this can be a transient error, it usually indicates that the requests input is invalid."
 
@@ -46,8 +49,8 @@ An HTTP error 400 occurred:
 
 
 Notes:
-I am providing a sample code above. I just changed one line of https://github.com/youtube/api-samples/blob/master/python/comment_threads.py to only list "heldForReview" comments.
-I also removed the the "insert_comment" calls to insert channel comments.
+I am providing a sample code below. 
+
 You can see all changes to the default sample code in this commit:
 https://github.com/alexbenfica/commentThreads.update-bug-report/commit/65c8b26f7e63faa91d2f4d8e0f964caaa7074ba8
 
@@ -57,7 +60,3 @@ https://github.com/alexbenfica/commentThreads.update-bug-report/
 
 
 Of course, you will need your authorization files.
-
-
-
-
